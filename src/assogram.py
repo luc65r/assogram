@@ -3,6 +3,7 @@ import importlib
 import os
 import sys
 
+from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, ApplicationBuilder, CommandHandler, CallbackContext
 from typing import Union
@@ -50,8 +51,10 @@ class CommandFileHandler(PatternMatchingEventHandler):
 
 def main():
     logging.basicConfig(level=logging.INFO)
+    load_dotenv()
 
-    app = ApplicationBuilder().token("").build()
+    TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     with os.scandir("src/commands") as it:
         for entry in it:
