@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "assogram"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Ransan <lucas@ransan.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-telegram-bot = "^20.5"
+watchdog = "^3.0.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+python-lsp-server = "^1.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
