@@ -14,4 +14,4 @@ def deinit() -> None:
     app.remove_handler(handler)
 
 async def command(update: Update, context: CallbackContext) -> None:
-    await update.effective_message.reply_text("Ici sera la vidéo")
+    await update.effective_message.reply_video("BAACAgQAAxkDAAMWZRR2trQuGBSPV0Cwo6JSBBjEDkUAApERAALl1KBQS3U0hOEqD-kwBA")
