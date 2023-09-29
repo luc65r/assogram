@@ -8,7 +8,7 @@ from telegram.ext import Application, CommandHandler, CallbackContext
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SPREADSHEET_ID = os.getenv("BTS_SPREADSHEET_ID")
-RANGE = os.getenv("BTS_SPREADSHEET_ID")
+RANGE = os.getenv("BTS_RANGE")
 LINK = os.getenv("BTS_LINK")
 
 app: Application
