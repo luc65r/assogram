@@ -18,5 +18,5 @@ def deinit() -> None:
 
 async def command(update: Update, context: CallbackContext) -> None:
     with os.scandir("resources/amimir") as it:
-        entry = random.choice(it)
+        entry = random.choice(list(it))
         await update.effective_message.reply_photo(entry.path)
