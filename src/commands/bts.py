@@ -34,7 +34,7 @@ async def command(update: Update, context: CallbackContext) -> None:
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE).execute()
     [taken, remaining_bus, remaining_party] = result["values"][0]
     await update.effective_message.reply_html(f"""<b>Soirée Back To School</b>
-    Lien d'inscription : {LINK}
-    Il reste {remaining_party} places, dont {remaining_bus} pour le bus de 23h.
-    Vous avez jusqu'au vendredi 6 octobre à 21h pour vous inscrire.
+Lien d'inscription : {LINK}
+Il reste {remaining_party} places, dont {remaining_bus} pour le bus de 23h.
+Vous avez jusqu'au vendredi 6 octobre à 21h pour vous inscrire.
     """)
