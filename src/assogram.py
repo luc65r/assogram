@@ -27,12 +27,15 @@ class CommandFileHandler(PatternMatchingEventHandler):
         mod_name = f"commands.{name}"
         if mod_name in sys.modules:
             mod = sys.modules[mod_name]
-            mod.deinit()
+            try:
+                mod.deinit()
+            except Exception as exc:
+                logging.exception(f"exception while deinitializing {mod_name}:", exc_info=exc)
             logging.info(f"reloading module {mod_name}")
             try:
                 importlib.reload(mod)
             except Exception as exc:
-                logging.exception(f"exception while loading {mod_name}:", exc_info=exc)
+                logging.exception(f"exception while reloading {mod_name}:", exc_info=exc)
                 return
         else:
             logging.info(f"importing module {mod_name}")
@@ -41,12 +44,19 @@ class CommandFileHandler(PatternMatchingEventHandler):
             except Exception as exc:
                 logging.exception(f"exception while loading {mod_name}:", exc_info=exc)
                 return
-        mod.init(self.app)
+
+        try:
+            mod.init(self.app)
+        except Exception as exc:
+            logging.exception(f"exception while initializing {mod_name}:", exc_info=exc)
 
     def on_deleted(self, event: FileDeletedEvent) -> None:
         (name, _) = os.path.splitext(os.path.basename(event.src_path))
         mod_name = f"commands.{name}"
-        sys.modules[mod_name].deinit()
+        try:
+            sys.modules[mod_name].deinit()
+        except Exception as exc:
+            logging.exception(f"exception while deinitializing {mod_name}:", exc_info=exc)
         del sys.modules[mod_name]
 
 def main():
