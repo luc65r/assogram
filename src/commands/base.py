@@ -29,6 +29,7 @@ Contacte @luc65r si tu rencontres des problèmes.""")
 
 async def help_command(update: Update, context: CallbackContext) -> None:
     await update.effective_message.reply_html("""Commandes disponibles :
+- <b>/help</b> Toute l'aide
 - <b>/table</b> Éclate une table
 - <b>/aperu</b> Appééérrrruuuuu
 - <b>/amimir</b> Buenas noches uwu
