@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -36,15 +36,18 @@ def deinit() -> None:
     app.remove_handler(handler)
 
 async def command(update: Update, context: CallbackContext) -> None:
-    result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE).execute()
-    remaining = result["values"][0][0]
-    dl = datetime(2023, 11, 10, 21, 0)
-    remaining_time = humanize.precisedelta(dl - datetime.now(), minimum_unit="seconds", format="%0.0f")
-    await update.effective_message.reply_photo(
-        "resources/affiche_halloween.jpg",
-        caption=f"""<b>Soirée Halloween</b>
+    delta = datetime(2023, 11, 10, 21, 0) - datetime.now()
+    if delta >= timedelta(0):
+        result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE).execute()
+        remaining = result["values"][0][0]
+        remaining_time = humanize.precisedelta(delta, minimum_unit="seconds", format="%0.0f")
+        await update.effective_message.reply_photo(
+            "resources/affiche_halloween.jpg",
+            caption=f"""<b>Soirée Halloween</b>
 Lien d'inscription : {LINK}
 Il reste {remaining} places.
 Vous avez {remaining_time} (jusqu'au vendredi 10 novembre à 21h) pour vous inscrire.""",
-        parse_mode=ParseMode.HTML,
-    )
+            parse_mode=ParseMode.HTML,
+        )
+    else:
+        await update.effective_message.reply_photo("resources/dembele.jpg")
