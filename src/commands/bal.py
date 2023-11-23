@@ -36,7 +36,7 @@ def deinit() -> None:
     app.remove_handler(handler)
 
 async def command(update: Update, context: CallbackContext) -> None:
-    delta = datetime(2023, 11, 22, 23, 59) - datetime.now()
+    delta = datetime(2023, 12, 01, 21, 00) - datetime.now()
     if delta >= timedelta(0):
         result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE).execute()
         [remaining_repas, remaining_soiree] = result["values"][0]
