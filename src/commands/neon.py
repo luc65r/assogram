@@ -36,7 +36,7 @@ def deinit() -> None:
     app.remove_handler(handler)
 
 async def command(update: Update, context: CallbackContext) -> None:
-    delta = datetime(2023, 11, 22, 23, 59) - datetime.now()
+    delta = datetime(2024, 01, 26, 22, 00) - datetime.now()
     if update.effective_user is not None and update.effective_user.first_name == "Yan":
         await update.effective_message.reply_photo("resources/yan_neon.jpg")
     elif delta >= timedelta(0):
