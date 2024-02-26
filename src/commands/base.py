@@ -33,7 +33,7 @@ async def help_command(update: Update, context: CallbackContext) -> None:
 - <b>/table</b> Éclate une table
 - <b>/aperu</b> Appééérrrruuuuu
 - <b>/amimir</b> Buenas noches uwu
-- <b>/neon</b> Inscription Neon Party
+- <b>/gala</b> Inscription Gala
 
 Tu peux m'envoyer des photos/vidéos en message privé pour les ajouter à la commande amimir.
 Contacte @luc65r si tu rencontres des problèmes.""")
