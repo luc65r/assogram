@@ -48,9 +48,9 @@ async def command(update: Update, context: CallbackContext) -> None:
         remaining_time = humanize.precisedelta(delta, minimum_unit="seconds", format="%0.0f")
         await update.effective_message.reply_media_group(
             [
-                InputMediaPhoto("resources/affiche_gala.jpg"),
-                InputMediaPhoto("resources/affiche_gala_repas.jpg"),
-                InputMediaPhoto("resources/affiche_gala_soiree.jpg"),
+                InputMediaPhoto(Path("resources/affiche_gala.jpg")),
+                InputMediaPhoto(Path("resources/affiche_gala_repas.jpg")),
+                InputMediaPhoto(Path("resources/affiche_gala_soiree.jpg")),
             ],
             caption=f"""<b>Gala</b>
 Inscription repas et soirée : {LINK_REPAS} ({remaining_repas} places restantes)
