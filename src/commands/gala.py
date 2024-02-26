@@ -1,6 +1,5 @@
 import os
 from datetime import datetime, timedelta
-from pathlib import Path
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -49,9 +48,9 @@ async def command(update: Update, context: CallbackContext) -> None:
         remaining_time = humanize.precisedelta(delta, minimum_unit="seconds", format="%0.0f")
         await update.effective_message.reply_media_group(
             [
-                InputMediaPhoto(Path("resources/affiche_gala.jpg")),
-                InputMediaPhoto(Path("resources/affiche_gala_repas.jpg")),
-                InputMediaPhoto(Path("resources/affiche_gala_soiree.jpg")),
+                InputMediaPhoto(open("resources/affiche_gala.jpg", "rb")),
+                InputMediaPhoto(open("resources/affiche_gala_repas.jpg", "rb")),
+                InputMediaPhoto(open("resources/affiche_gala_soiree.jpg", "rb")),
             ],
             caption=f"""<b>Gala</b>
 Inscription repas et soirée : {LINK_REPAS} ({remaining_repas} places restantes)
